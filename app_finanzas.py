@@ -42,7 +42,7 @@ class FinanceAppFlet:
         )
     )
 
-    # Tarjetas de resumen
+    # Estas son las tarjetas de resumen, funcionan para agregar la cantidad
     self.txt_balance = ft.Text("$0.00", size=16, weight=ft.FontWeight.BOLD)
     self.txt_ingresos = ft.Text("$0.00", size=13, color="green")
     self.txt_gastos = ft.Text("$0.00", size=13, color="red")
@@ -136,7 +136,7 @@ class FinanceAppFlet:
         )
     )
 
-    # ListView para mostrar las transacciones
+    # Esto muestra el registro de transacciones 
     self.history_list = ft.ListView(expand=1, spacing=5, padding=0)
     self.page.add(
         ft.Container(content=self.history_list, height=200, border_radius=8)
@@ -169,7 +169,7 @@ class FinanceAppFlet:
     )
     self.conn.commit()
 
-    # Limpiar campos
+    # para limpiar datos
     self.monto_input.value = ""
     self.cat_input.value = ""
     self.monto_input.update()
@@ -236,14 +236,14 @@ class FinanceAppFlet:
         )
         self.history_list.controls.append(item)
 
-    # Actualizar totales
+    # Actualizar todos los datos
     balance = total_ingresos - total_gastos
     self.txt_balance.value = f"${balance:.2f}"
     self.txt_balance.color = "green" if balance >= 0 else "red"
     self.txt_ingresos.value = f"${total_ingresos:.2f}"
     self.txt_gastos.value = f"${total_gastos:.2f}"
 
-    # Actualizar la vista de la lista y la página completa
+    # Actualizar la página completa
     self.history_list.update()
     self.page.update()
 
